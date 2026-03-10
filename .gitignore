@@ -1,17 +1,18 @@
-# Build output
+# Maven / Java build output
 target/
+**/target/
 *.class
 
-# Generated artifacts
+# Generated output artifacts
 *.pdf
 
 # Logs
 *.log
 
-# IDE
+# IDE files
 .idea/
 *.iml
 .vscode/
 
-# OS
+# OS files
 .DS_Store

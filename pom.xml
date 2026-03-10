@@ -20,6 +20,8 @@
         <module>images-demo</module>
         <module>table-invoice</module>
         <module>table-report</module>
+        <module>pagination-table-report</module>
+        <module>spring-boot-download</module>
     </modules>
 
     <properties>

@@ -103,8 +103,26 @@ public class HelloWorld {
 | `images-demo` | `example.ImageExample` | Embedding PNG/JPEG/BMP images with position and size control | `images-demo-output.pdf` |
 | `table-invoice` | `example.TableInvoiceExample` | Generate a business invoice with a table of items | `invoice-table.pdf` |
 | `table-report` | `example.TableReportExample` | Generate a simple analytics report with tabular data | `sales-report.pdf` |
+| `pagination-table-report` | `example.PaginationTableReportExample` | Multi-page business report with table pagination, repeated headers, and page footers | `pagination-table-report-output.pdf` |
+| `spring-boot-download` | `example.SpringBootDownloadApplication` | Generate and return a PDF directly from a Spring Boot HTTP endpoint | `GET /api/reports/invoice` |
 
 > **Note for `images-demo`:** a sample PNG image is generated in memory at runtime — no external file needed.
+>
+> **Note for `spring-boot-download`:** this module is a Spring Boot app. See run instructions below.
+
+## Why these examples matter
+
+This repository is structured to take you from zero to production:
+
+| Stage | Covered by |
+|---|---|
+| Minimal hello world | `hello-world` |
+| Static documents (invoice, report, images) | `invoice-generator`, `report-generator`, `images-demo` |
+| Table-based business documents | `table-invoice`, `table-report` |
+| Multi-page pagination | `pagination-table-report` |
+| Backend HTTP delivery | `spring-boot-download` |
+
+Each example is self-contained and runnable in under a minute.
 
 ### Run any example
 
@@ -122,6 +140,21 @@ mvn -pl batch-pdf          exec:java -Dexec.mainClass="example.BatchExample"
 mvn -pl images-demo        exec:java -Dexec.mainClass="example.ImageExample"
 mvn -pl table-invoice      exec:java -Dexec.mainClass="example.TableInvoiceExample"
 mvn -pl table-report       exec:java -Dexec.mainClass="example.TableReportExample"
+mvn -pl pagination-table-report exec:java -Dexec.mainClass="example.PaginationTableReportExample"
+```
+
+### Spring Boot example
+
+The `spring-boot-download` module is a web application. Start it with:
+
+```bash
+mvn -pl spring-boot-download spring-boot:run
+```
+
+Then open in your browser or use curl:
+
+```bash
+curl http://localhost:8080/api/reports/invoice -o invoice.pdf
 ```
 
 ---
@@ -143,7 +176,7 @@ chmod +x ./scripts/generate-example.sh
 ./scripts/generate-example.sh report-generator
 ```
 
-Supported modules: `hello-world`, `invoice-generator`, `report-generator`, `multi-language-pdf`, `batch-pdf`, `images-demo`, `table-invoice`, `table-report`.
+Supported modules: `hello-world`, `invoice-generator`, `report-generator`, `multi-language-pdf`, `batch-pdf`, `images-demo`, `table-invoice`, `table-report`, `pagination-table-report`, `spring-boot-download`.
 
 ---
 
