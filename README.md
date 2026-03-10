@@ -39,6 +39,31 @@ Open `hello-world/hello.pdf` — you just generated your first PDF with PDFixa.
 
 ---
 
+## Why PDFixa?
+
+Most Java PDF libraries are either too low-level (you manage PDF operators directly) or too high-level (you feed a template engine and hope the layout is right). PDFixa sits in between: a plain Java API where you place content at exact coordinates, and the output is always the same.
+
+| | PDFixa | iText | Apache PDFBox | OpenPDF |
+|---|---|---|---|---|
+| License | Apache 2.0 | AGPL / commercial | Apache 2.0 | LGPL |
+| API style | Coordinate-based, simple | Powerful, complex | Low-level | iText 2 fork |
+| Deterministic output | Yes | Depends on version | No guarantee | No guarantee |
+| Template engine required | No | No | No | No |
+| Predictable layout | Yes — you place everything | Partial (flow layout) | Manual | Partial |
+| Pure Java, no native deps | Yes | Yes | Yes | Yes |
+| Learning curve | Low | High | High | Medium |
+
+**When to choose PDFixa:**
+- You need pixel-exact, reproducible PDFs (invoices, reports, certificates)
+- You want to write plain Java without learning a DSL or template syntax
+- You need the same output across every run and every environment
+
+**When to choose something else:**
+- You need to read, edit, or sign existing PDFs → Apache PDFBox
+- You need advanced PDF/A, digital signatures, or forms → iText
+
+---
+
 ## Mental Model
 
 PDFixa has three building blocks:
@@ -109,6 +134,18 @@ public class HelloWorld {
 > **Note for `images-demo`:** a sample PNG image is generated in memory at runtime — no external file needed.
 >
 > **Note for `spring-boot-download`:** this module is a Spring Boot app. See run instructions below.
+
+## Visual Previews
+
+Preview images for selected examples are available in `previews/` so developers can see output layout without running modules.
+
+| Example | Preview |
+|--------|--------|
+| `hello-world` | ![hello-world preview](previews/hello-world.png) |
+| `invoice-generator` | ![invoice-generator preview](previews/invoice-generator.png) |
+| `table-invoice` | ![table-invoice preview](previews/table-invoice.png) |
+| `table-report` | ![table-report preview](previews/table-report.png) |
+| `pagination-table-report` | ![pagination-table-report preview](previews/pagination-table-report.png) |
 
 ## Why these examples matter
 
