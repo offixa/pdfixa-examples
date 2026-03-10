@@ -12,11 +12,14 @@
     <description>Practical examples for the PDFixa deterministic PDF engine for Java.</description>
 
     <modules>
+        <module>hello-world</module>
         <module>invoice-generator</module>
         <module>report-generator</module>
         <module>multi-language-pdf</module>
         <module>batch-pdf</module>
         <module>images-demo</module>
+        <module>table-invoice</module>
+        <module>table-report</module>
     </modules>
 
     <properties>
