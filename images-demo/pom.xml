@@ -19,7 +19,6 @@
         <dependency>
             <groupId>io.offixa</groupId>
             <artifactId>pdfixa-core</artifactId>
-            <version>1.0.0</version>
         </dependency>
     </dependencies>
 </project>

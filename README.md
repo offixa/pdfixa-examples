@@ -8,7 +8,7 @@ Code examples for [PDFixa](https://github.com/offixa/pdfixa-core) — a determin
 |--------|------------|--------------|--------|
 | `invoice-generator` | `example.InvoiceExample` | Line items, totals, section headers | `invoice-output.pdf` |
 | `report-generator` | `example.ReportExample` | Multi-section layout, body text, confidentiality footer | `report-output.pdf` |
-| `multi-language-pdf` | `example.MultiLanguageExample` | Unicode text across Latin, Cyrillic, CJK, Arabic, Hangul | `multi-language-output.pdf` |
+| `multi-language-pdf` | `example.MultiLanguageExample` | Latin-script languages: English, Uzbek, French, German, Spanish, Italian, Portuguese, Indonesian | `multi-language-output.pdf` |
 | `batch-pdf` | `example.BatchExample` | Generating multiple PDFs in a loop | `batch-output-01.pdf` … `batch-output-10.pdf` |
 | `images-demo` | `example.ImageExample` | Embedding PNG/JPEG/BMP images with position and size control | `images-demo-output.pdf` |
 
