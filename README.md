@@ -1,5 +1,9 @@
 # pdfixa-examples
 
+[![Build](https://img.shields.io/github/actions/workflow/status/offixa/pdfixa-examples/build.yml?branch=main&style=flat-square)](https://github.com/offixa/pdfixa-examples/actions)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square)](LICENSE)
+[![Java](https://img.shields.io/badge/java-17%2B-orange?style=flat-square)](https://adoptium.net)
+
 Code examples for [PDFixa](https://github.com/offixa/pdfixa-core) — a deterministic PDF generation library for Java.
 
 ---
@@ -146,6 +150,7 @@ Preview images for selected examples are available in `previews/` so developers 
 | `table-invoice` | ![table-invoice preview](previews/table-invoice.png) |
 | `table-report` | ![table-report preview](previews/table-report.png) |
 | `pagination-table-report` | ![pagination-table-report preview](previews/pagination-table-report.png) |
+| `spring-boot-download` | ![spring-boot-download preview](previews/spring-boot-download.png) |
 
 ## Why these examples matter
 
