@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square)](LICENSE)
 [![Java](https://img.shields.io/badge/java-17%2B-orange?style=flat-square)](https://adoptium.net)
 
-Code examples for [PDFixa](https://github.com/offixa/pdfixa-core) — a deterministic PDF generation library for Java.
+Code examples for [PDFixa](https://github.com/offixa/PDFixa) — a deterministic PDF generation library for Java.
 
 ---
 
@@ -224,4 +224,4 @@ Supported modules: `hello-world`, `invoice-generator`, `report-generator`, `mult
 
 ## Related
 
-- [PDFixa Core](https://github.com/offixa/pdfixa-core) — library source, API reference, and Maven install instructions
+- [PDFixa Core](https://github.com/offixa/PDFixa) — library source, API reference, and Maven install instructions
