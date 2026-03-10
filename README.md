@@ -101,8 +101,8 @@ public class HelloWorld {
 | `multi-language-pdf` | `example.MultiLanguageExample` | Latin-script languages: English, Uzbek, French, German, Spanish, Italian, Portuguese, Indonesian | `multi-language-output.pdf` |
 | `batch-pdf` | `example.BatchExample` | Generating multiple PDFs in a loop | `batch-output-01.pdf` … `batch-output-10.pdf` |
 | `images-demo` | `example.ImageExample` | Embedding PNG/JPEG/BMP images with position and size control | `images-demo-output.pdf` |
-| `table-invoice` | `example.TableInvoiceExample` | Invoice with data-driven table layout, grand total | `invoice-table.pdf` |
-| `table-report` | `example.TableReportExample` | Monthly sales report with product table and totals | `sales-report.pdf` |
+| `table-invoice` | `example.TableInvoiceExample` | Generate a business invoice with a table of items | `invoice-table.pdf` |
+| `table-report` | `example.TableReportExample` | Generate a simple analytics report with tabular data | `sales-report.pdf` |
 
 > **Note for `images-demo`:** a sample PNG image is generated in memory at runtime — no external file needed.
 
