@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  compile:
+  examples:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,5 +19,64 @@ jobs:
           java-version: '17'
           cache: maven
 
-      - name: Compile
-        run: mvn -B compile
+      - name: Compile all modules
+        run: mvn -B --no-transfer-progress compile
+
+      - name: Run standalone examples
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          run_example() {
+            local module="$1"
+            local main_class="$2"
+            local output_file="$3"
+
+            rm -f "$output_file"
+            mvn -B --no-transfer-progress -pl "$module" exec:java -Dexec.mainClass="$main_class"
+            test -s "$output_file"
+          }
+
+          run_example "hello-world" "example.HelloWorldExample" "hello-world/hello.pdf"
+          run_example "invoice-generator" "example.InvoiceExample" "invoice-generator/invoice-output.pdf"
+          run_example "report-generator" "example.ReportExample" "report-generator/report-output.pdf"
+          run_example "multi-language-pdf" "example.MultiLanguageExample" "multi-language-pdf/multi-language-output.pdf"
+          run_example "images-demo" "example.ImageExample" "images-demo/images-demo-output.pdf"
+          run_example "table-invoice" "example.TableInvoiceExample" "table-invoice/invoice-table.pdf"
+          run_example "table-report" "example.TableReportExample" "table-report/sales-report.pdf"
+          run_example "pagination-table-report" "example.PaginationTableReportExample" "pagination-table-report/pagination-table-report-output.pdf"
+
+          rm -f batch-pdf/batch-output-*.pdf
+          mvn -B --no-transfer-progress -pl batch-pdf exec:java -Dexec.mainClass="example.BatchExample"
+          shopt -s nullglob
+          batch_outputs=(batch-pdf/batch-output-*.pdf)
+          test "${#batch_outputs[@]}" -eq 10
+          for pdf in "${batch_outputs[@]}"; do
+            test -s "$pdf"
+          done
+
+      - name: Run Spring Boot download example
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          rm -f spring-boot-download/invoice.pdf
+          mvn -B --no-transfer-progress -pl spring-boot-download exec:java -Dexec.mainClass="example.SpringBootDownloadApplication" > spring-boot.log 2>&1 &
+          spring_pid=$!
+
+          cleanup() {
+            if kill -0 "$spring_pid" 2>/dev/null; then
+              kill "$spring_pid"
+              wait "$spring_pid" || true
+            fi
+          }
+          trap cleanup EXIT
+
+          for _ in {1..30}; do
+            if curl -fsS http://127.0.0.1:8080/api/reports/invoice -o spring-boot-download/invoice.pdf; then
+              break
+            fi
+            sleep 2
+          done
+
+          test -s spring-boot-download/invoice.pdf
