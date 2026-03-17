@@ -134,6 +134,7 @@ public class HelloWorld {
 | `table-report` | `example.TableReportExample` | Generate a simple analytics report with tabular data | `sales-report.pdf` |
 | `pagination-table-report` | `example.PaginationTableReportExample` | Multi-page business report with table pagination, repeated headers, and page footers | `pagination-table-report-output.pdf` |
 | `spring-boot-download` | `example.SpringBootDownloadApplication` | Generate and return a PDF directly from a Spring Boot HTTP endpoint | `GET /api/reports/invoice` |
+| `latin1-demo` | `example.Latin1Example` | Latin-1 characters with WinAnsiEncoding — accented text across French, Spanish, Turkish, German and more | `latin1-example.pdf` |
 
 > **Note for `images-demo`:** a sample PNG image is generated in memory at runtime — no external file needed.
 >
@@ -141,16 +142,13 @@ public class HelloWorld {
 
 ## Visual Previews
 
-Preview images for selected examples are available in `previews/` so developers can see output layout without running modules.
+Preview images for selected examples are available in `previews/`. Shown small below; click to open full size.
 
-| Example | Preview |
-|--------|--------|
-| `hello-world` | ![hello-world preview](previews/hello-world.png) |
-| `invoice-generator` | ![invoice-generator preview](previews/invoice-generator.png) |
-| `table-invoice` | ![table-invoice preview](previews/table-invoice.png) |
-| `table-report` | ![table-report preview](previews/table-report.png) |
-| `pagination-table-report` | ![pagination-table-report preview](previews/pagination-table-report.png) |
-| `spring-boot-download` | ![spring-boot-download preview](previews/spring-boot-download.png) |
+| | | |
+|---|---|---|
+| **hello-world**<br><a href="previews/hello-world.png"><img src="previews/hello-world.png" width="240" alt="hello-world" /></a> | **invoice-generator**<br><a href="previews/invoice-generator.png"><img src="previews/invoice-generator.png" width="240" alt="invoice-generator" /></a> | **table-invoice**<br><a href="previews/table-invoice.png"><img src="previews/table-invoice.png" width="240" alt="table-invoice" /></a> |
+| **table-report**<br><a href="previews/table-report.png"><img src="previews/table-report.png" width="240" alt="table-report" /></a> | **pagination-table-report**<br><a href="previews/pagination-table-report.png"><img src="previews/pagination-table-report.png" width="240" alt="pagination-table-report" /></a> | **spring-boot-download**<br><a href="previews/spring-boot-download.png"><img src="previews/spring-boot-download.png" width="240" alt="spring-boot-download" /></a> |
+| **latin1-demo**<br><a href="previews/latin1-demo.png"><img src="previews/latin1-demo.png" width="240" alt="latin1-demo" /></a> | **multi-language-pdf**<br><a href="previews/multi-language-pdf.png"><img src="previews/multi-language-pdf.png" width="240" alt="multi-language-pdf" /></a> | |
 
 ## Why these examples matter
 
@@ -183,6 +181,7 @@ mvn -pl images-demo        exec:java -Dexec.mainClass="example.ImageExample"
 mvn -pl table-invoice      exec:java -Dexec.mainClass="example.TableInvoiceExample"
 mvn -pl table-report       exec:java -Dexec.mainClass="example.TableReportExample"
 mvn -pl pagination-table-report exec:java -Dexec.mainClass="example.PaginationTableReportExample"
+mvn -pl latin1-demo             exec:java -Dexec.mainClass="example.Latin1Example"
 ```
 
 ### Spring Boot example
@@ -198,6 +197,30 @@ Then open in your browser or use curl:
 ```bash
 curl http://localhost:8080/api/reports/invoice -o invoice.pdf
 ```
+
+---
+
+## Latin-1 Support
+
+PDFixa 1.1.0 adds **WinAnsiEncoding** to all Base-14 fonts (`Helvetica`, `Times-Roman`, `Courier`, and their variants).
+
+This means accented Latin characters work out of the box — no extra configuration needed:
+
+```java
+page.drawTextBox(50, 700, 500, 16, "Helvetica", 13,
+        "Résumé — Español — Türkçe — Français");
+```
+
+**What is covered:**
+
+- Full Latin-1 range (U+0000–U+00FF): accents, diacritics, special punctuation
+- Languages: French, Spanish, German, Portuguese, Turkish, Norwegian, Romanian, Italian, and any other Latin-script language within the WinAnsi range
+
+**What is not covered:**
+
+- Cyrillic, Greek, Arabic, Hebrew, CJK, and full Unicode → **PDFixa Pro**
+
+See the [`latin1-demo`](latin1-demo/) module for a runnable example.
 
 ---
 

@@ -45,6 +45,7 @@ jobs:
           run_example "table-invoice" "example.TableInvoiceExample" "table-invoice/invoice-table.pdf"
           run_example "table-report" "example.TableReportExample" "table-report/sales-report.pdf"
           run_example "pagination-table-report" "example.PaginationTableReportExample" "pagination-table-report/pagination-table-report-output.pdf"
+          run_example "latin1-demo"            "example.Latin1Example"                 "latin1-demo/latin1-example.pdf"
 
           rm -f batch-pdf/batch-output-*.pdf
           mvn -B --no-transfer-progress -pl batch-pdf exec:java -Dexec.mainClass="example.BatchExample"
